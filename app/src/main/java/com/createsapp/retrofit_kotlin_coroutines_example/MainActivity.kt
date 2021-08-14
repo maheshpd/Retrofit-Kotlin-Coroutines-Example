@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.createsapp.retrofit_kotlin_coroutines_example.data.User
@@ -16,6 +16,7 @@ import com.createsapp.retrofit_kotlin_coroutines_example.ui.MainViewModel
 import com.createsapp.retrofit_kotlin_coroutines_example.ui.ViewModelFactory
 import com.createsapp.retrofit_kotlin_coroutines_example.utils.Status
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.List.of
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,10 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelFactory(ApiHelper((RetrofitBuilder.apiService)))).get(MainViewModel::class.java)
     }
 
     private fun setupUI() {
